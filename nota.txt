@@ -1,0 +1,35 @@
+nodejs un entorno de ejecucion de js fuera del navegador para crear apis :v
+
+npm nos permite inicializar los proyecto e instalar paquetes y modulos de terceros
+
+
+
+npm init -y
+
+npm i express 
+
+
+
+express es un framework osea libreria q nos facilita el uso de node js
+
+
+pasos para hacer un proyecto
+
+1: crear la carpeta del proyecto
+
+2: npm init -y "inicia el proyecto y crea el archivo packaje.json"
+(descripcion del proyecto dependecias de terceros script ejecucion)
+
+3: en packaje.json modificamos type = "module"
+agregamos script: "start: " node index.js
+
+4: npm  i express "instalamos express"
+
+5: creamos servidor en index.js
+import express from express
+const app = express()
+const port = 3000
+app.listen (port, () => {console.log(servidor en puerto ${port} )})
+
+6: ejecutamos el servidor: node index.js o npm run start
+
