@@ -1,4 +1,4 @@
-const express = require('express')
+import express from 'express'
 const app = express()
 const port = 3000
 
@@ -28,7 +28,7 @@ app.get('/personas/:id', (req,res) => {
 
 app.post('/personas', (req,res) => {
     console.log(req.body)
-    const nvoid = personas.length + 1;
+    const nvoid = personas.length + 1
     const nuevaPersona = {
         id : nvoid,
         nombre : req.body.nombre,
@@ -38,25 +38,28 @@ app.post('/personas', (req,res) => {
     res.status(201).json(nuevaPersona)
 })
 
-app.put('/personas/', (req,res) => {
+app.put('/personas', (req,res) => {
     console.log(req.query)
     console.log(req.body)
     const persona = personas.find(p => p.id == req.query.id)
-    if (!persona) { return res.status(404).send('no se encontro')
+    if (!persona) { return res.status(404).send('no se encontro')}
     persona.nombre = req.body.nombre
     persona.edad = req.body.edad
-    }
-    res.json(persona)
+    res.json(persona).send('actualizando persona')
 
 })
 
-app.delete('/personas', (req,res) => {
+app.delete('/personas/:id', (req,res) => {
     console.log(req.params.id)
-    const indice = persona.findIndex (i, i.id == req.params.id)
-    if(indide == -1){ return res.status(404).send('no existe') }
+    const indice = personas.findIndex (i => i.id == (req.params.id))
+    if(indice == -1){ return res.status(404).send('no existe') }
     personas.splice(indice, 1)
-    res.status(204)
+    res.status(204).send('se elimino la persona')
 
+})
+
+app.listen(port, () => {
+    console.log('servidor en http://localhost:{port}')
 })
 
 app.use((req, res) => {
